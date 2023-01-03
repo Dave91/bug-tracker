@@ -1,0 +1,28 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*grid-column: 1;*/
+  padding: 15px;
+  max-width: max-content;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.sidebar-btn:hover {
+  scale: 0.85;
+}
