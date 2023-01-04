@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { signIn } from "../../../Controllers/authSlice";
+import React, { useState, useRef } from "react";
+import { useAuth } from "../../../Controllers/authController";
+import "./register.css";
 
-import "./login.css";
+export default function Register() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState("");
+  const { signUp } = useAuth();
 
-export default () => {
   const [formInput, setFormInput] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
@@ -16,9 +20,14 @@ export default () => {
     });
   }
 
-  function submit(e) {
-    //dispatch(signIn(formInput));
+  async function submitClicked(e) {
     e.preventDefault();
+    try {
+      setError("");
+      await signUp(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError("Error: registration has failed.");
+    }
   }
 
   return (
@@ -27,9 +36,12 @@ export default () => {
         <h1>Login:</h1>
         <input
           name="email"
+          type="email"
           placeholder="E-mail"
           onChange={inputChanged}
           value={formInput.email}
+          ref={emailRef}
+          required
         ></input>
         <input
           name="password"
@@ -37,11 +49,13 @@ export default () => {
           placeholder="Password"
           onChange={inputChanged}
           value={formInput.password}
+          ref={passwordRef}
+          required
         ></input>
-        <button type="submit" onClick={submit}>
+        <button type="submit" onClick={submitClicked}>
           Login
         </button>
       </form>
     </div>
   );
-};
+}
