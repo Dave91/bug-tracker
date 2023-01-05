@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import BugModel from "../../../Models/bugModel";
 import EditPanel from "../BugEditDelete/bugEditPanel";
 import BugEdit from "../BugCreateEdit/bugForm";
@@ -8,7 +7,6 @@ import ViewSection from "./component/bugViewSection";
 import "./bugView.css";
 
 export default (props) => {
-  const dispatch = useDispatch();
   const bug = new BugModel(props.bug);
   const [displayEdit, setDisplayEdit] = useState(false);
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 //import { getBugs } from "../../Controllers/Redux/bugSlice";
 import BugCard from "../Components/BugCard/bugCard";
 import BugView from "../Components/BugView/bugView";
@@ -9,8 +8,7 @@ export default () => {
     name: "",
     isDisplayed: false,
   });
-  const dispatch = useDispatch();
-  const { bugs } = useSelector((state) => state);
+  const { bugs } = [];
 
   useEffect(() => {
     //dispatch(getBugs());

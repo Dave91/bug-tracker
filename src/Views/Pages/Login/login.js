@@ -25,19 +25,8 @@ export default () => {
     <div className="login-bg">
       <form className="login-panel">
         <h1>Login:</h1>
-        <input
-          name="email"
-          placeholder="E-mail"
-          onChange={inputChanged}
-          value={formInput.email}
-        ></input>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={inputChanged}
-          value={formInput.password}
-        ></input>
+        <input name="email" placeholder="E-mail"></input>
+        <input name="password" type="password" placeholder="Password"></input>
         <button type="submit" onClick={submit}>
           Login
         </button>
