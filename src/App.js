@@ -9,7 +9,7 @@ import CreateBug from "./Views/Components/BugCreateEdit/bugForm";
 function App() {
   return (
     <AuthProvider>
-      <Register />
+      <Login />
     </AuthProvider>
   );
 }

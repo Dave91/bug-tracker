@@ -7,14 +7,14 @@ export default function Register() {
   const passwordRef = useRef();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
+  const { registerAuth } = useAuth();
 
   async function submitClicked(e) {
     e.preventDefault();
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
+      await registerAuth(emailRef.current.value, passwordRef.current.value);
     } catch {
       setError("Error: registration has failed.");
     }

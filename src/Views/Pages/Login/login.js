@@ -1,36 +1,49 @@
-import React, { useState } from "react";
-import { signIn } from "../../../Controllers/authSlice";
-
+import React, { useState, useRef } from "react";
+import { useAuth } from "../../../Controllers/authController";
 import "./login.css";
 
-export default () => {
-  const [formInput, setFormInput] = useState({
-    name: "",
-    password: "",
-  });
+export default function Register() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { loginAuth } = useAuth();
 
-  function inputChanged(e) {
-    setFormInput({
-      ...formInput,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function submit(e) {
-    //dispatch(signIn(formInput));
+  async function submitClicked(e) {
     e.preventDefault();
+    try {
+      setError("");
+      setLoading(true);
+      await loginAuth(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError("Error: login has failed.");
+    }
+    setLoading(false);
   }
 
   return (
     <div className="login-bg">
-      <form className="login-panel">
+      <form className="login-panel" onSubmit={submitClicked}>
         <h1>Login:</h1>
-        <input name="email" placeholder="E-mail"></input>
-        <input name="password" type="password" placeholder="Password"></input>
-        <button type="submit" onClick={submit}>
+        {error && <p>{error}</p>}
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          ref={emailRef}
+          required
+        ></input>
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          ref={passwordRef}
+          required
+        ></input>
+        <button disabled={loading} type="submit">
           Login
         </button>
       </form>
     </div>
   );
-};
+}

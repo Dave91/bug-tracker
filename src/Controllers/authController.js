@@ -2,7 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 //import { auth } from "./firebaseAuth";
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -25,12 +30,32 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  function signUp(email, password) {
-    //need to pass auth to avoid error
+  function registerAuth(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.email);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  function loginAuth(email, password) {
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.email);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  function logoutAuth() {
+    return signOut(auth)
+      .then(() => {
+        console.log("");
       })
       .catch((e) => {
         console.log(e);
@@ -45,7 +70,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = { currentUser, signUp };
+  const value = { currentUser, registerAuth, loginAuth, logoutAuth };
 
   return (
     <AuthContext.Provider value={value}>
