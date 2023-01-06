@@ -24,8 +24,7 @@ export default function Register() {
   return (
     <div className="login-bg">
       <form className="login-panel" onSubmit={submitClicked}>
-        <h1>Login:</h1>
-        {error && <p>{error}</p>}
+        <h1>Login:{error && <br>{error}</br>}</h1>
         <input
           name="email"
           type="email"
