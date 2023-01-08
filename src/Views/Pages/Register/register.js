@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../../../Controllers/authController";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 
 export default function Register() {
@@ -9,6 +9,7 @@ export default function Register() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { registerAuth } = useAuth();
+  const navigate = useNavigate();
 
   async function submitClicked(e) {
     e.preventDefault();
@@ -16,6 +17,7 @@ export default function Register() {
       setError("");
       setLoading(true);
       await registerAuth(emailRef.current.value, passwordRef.current.value);
+      navigate("/");
     } catch {
       setError("Error: registration has failed.");
     }

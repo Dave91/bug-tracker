@@ -31,11 +31,6 @@ export default App;
         <Route path="/viewbugs">
           <ViewBugs />
         </Route>
-        <Route path="/create">
-          <div className="page-cont">
-            <CreateBug title="Create Bug" />
-          </div>
-        </Route>
       </Routes>
     </>
   )}
