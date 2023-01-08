@@ -1,16 +1,21 @@
 import React from "react";
 import { AuthProvider } from "./Controllers/authController";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Views/Pages/Login/login";
 import Register from "./Views/Pages/Register/register";
-import ViewBugs from "./Views/Pages/viewBugs";
-import Sidebar from "./Views/Components/Sidebar/sidebar";
-import CreateBug from "./Views/Components/BugCreateEdit/bugForm";
+import Dashboard from "./Views/Pages/Dashboard/viewBugs";
 
 function App() {
   return (
-    <AuthProvider>
-      <Login />
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Switch>
+      </AuthProvider>
+    </Router>
   );
 }
 

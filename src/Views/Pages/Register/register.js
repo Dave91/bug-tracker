@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../../../Controllers/authController";
+import { Link } from "react-router-dom";
 import "./register.css";
 
 export default function Register() {
@@ -44,6 +45,9 @@ export default function Register() {
           Register
         </button>
       </form>
+      <div>
+        I already have an account: <Link to="/login">LOGIN</Link>
+      </div>
     </div>
   );
 }

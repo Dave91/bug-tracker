@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../../../Controllers/authController";
+import { Link } from "react-router-dom";
 import "./login.css";
 
 export default function Register() {
@@ -24,7 +25,8 @@ export default function Register() {
   return (
     <div className="login-bg">
       <form className="login-panel" onSubmit={submitClicked}>
-        <h1>Login:{error && <br>{error}</br>}</h1>
+        <h1>Login:</h1>
+        {error && <div>{error}</div>}
         <input
           name="email"
           type="email"
@@ -43,6 +45,9 @@ export default function Register() {
           Login
         </button>
       </form>
+      <div>
+        Need an account? <Link to="/register">Register</Link>
+      </div>
     </div>
   );
 }
