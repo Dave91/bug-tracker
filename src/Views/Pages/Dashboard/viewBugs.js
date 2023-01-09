@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 //import { getBugs } from "../../Controllers/Redux/bugSlice";
 import BugCard from "../../Components/BugCard/bugCard";
 import BugView from "../../Components/BugView/bugView";
+import Sidebar from "../../Components/Sidebar/sidebar";
 
 export default () => {
   const [displayBug, setDisplayBug] = useState({

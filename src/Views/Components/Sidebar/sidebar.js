@@ -24,7 +24,9 @@ export default () => {
     <div className="sidebar">
       <div className="sidebar-btn">View Bugs</div>
       <div className="sidebar-btn">Create Bug</div>
-      <div className="sidebar-btn">Logout</div>
+      <div className="sidebar-btn" onClick={logoutClicked}>
+        Logout
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export default function Register() {
       setError("");
       setLoading(true);
       await registerAuth(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
+      navigate("/home");
     } catch {
       setError("Error: registration has failed.");
     }

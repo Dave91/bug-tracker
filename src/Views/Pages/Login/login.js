@@ -17,7 +17,7 @@ export default function Register() {
       setError("");
       setLoading(true);
       await loginAuth(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
+      navigate("/home");
     } catch {
       setError("Error: login has failed.");
     }
@@ -48,7 +48,7 @@ export default function Register() {
         </button>
       </form>
       <div>
-        Need an account? <Link to="/register">Register</Link>
+        Need an account? <Link to="/register">REGISTER</Link>
       </div>
     </div>
   );

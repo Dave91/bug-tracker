@@ -10,9 +10,11 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<></>} />
         </Routes>
       </AuthProvider>
     </Router>
@@ -20,19 +22,3 @@ function App() {
 }
 
 export default App;
-
-/* <Router>
-  {!true ? (
-    <Login />
-  ) : (
-    <>
-      <Sidebar />
-      <Routes>
-        <Route path="/viewbugs">
-          <ViewBugs />
-        </Route>
-      </Routes>
-    </>
-  )}
-</Router>;
- */
