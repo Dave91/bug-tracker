@@ -25,7 +25,12 @@ export default () => {
   return (
     <div className="page-cont">
       {bugs.map((bug, key) => {
-        return <BugCard key={key} bug={bug} clicked={bugClicked} />;
+        return (
+          <>
+            <Sidebar />
+            <BugCard key={key} bug={bug} clicked={bugClicked} />;
+          </>
+        );
       })}
       {displayBug.isDisplayed && (
         <BugView
