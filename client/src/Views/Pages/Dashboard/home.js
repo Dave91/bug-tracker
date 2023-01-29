@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useAuth } from "../../../Controllers/authController";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../../Components/Sidebar/sidebar";
-import db_data from "../../../Controllers/dbQueries";
+//import dbQuery from "../../../Controllers/dbQueries";
 
 export default function Home() {
   const emailRef = useRef();
@@ -17,8 +17,10 @@ export default function Home() {
     isDisplayed: false,
   });
 
-  if (db_data) {
-    db_data.forEach(function (bug) {
+  let dbData = "dbQuery";
+
+  if (dbData) {
+    dbData.forEach(function (bug) {
       // create a new div element for the bug
       let bugDiv = document.createElement("div");
       bugDiv.classList.add("bug-card");

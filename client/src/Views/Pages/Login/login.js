@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../../Controllers/authController";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
+//import dbQuery from "../../../../server/controller/dbController";
+import axios from "axios";
 
 export default function Register() {
   const emailRef = useRef();
@@ -10,6 +12,20 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const { loginAuth } = useAuth();
   const navigate = useNavigate();
+
+  const [users, setUser] = useState([]);
+
+  /* useEffect(() => {
+    getUsers();
+  }, []); */
+
+  const getUsers = async () => {
+    const response = await axios.get("http://localhost:5000/bugs/view");
+    setUser(response.data);
+    console.log(response.data);
+  };
+
+  getUsers();
 
   async function submitClicked(e) {
     e.preventDefault();

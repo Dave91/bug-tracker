@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BugModel from "../../../Models/bugModel";
+import BugModel from "../../../Services/bugs.service";
 import EditPanel from "../BugEditDelete/bugEditPanel";
 import BugEdit from "../BugCreateEdit/bugForm";
 import ViewSection from "./component/bugViewSection";
