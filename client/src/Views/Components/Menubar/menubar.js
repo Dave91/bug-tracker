@@ -36,9 +36,6 @@ export default function Menubar() {
           <div className="menubar-btn" onClick={createClicked}>
             Close Form
           </div>
-          <div className="menubar-btn" onClick={logoutClicked}>
-            Logout
-          </div>
           <BugForm />
         </>
       ) : (
