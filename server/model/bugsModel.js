@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+/* import { Sequelize } from "sequelize";
 import db from "../config/dbConfig.js";
 
 const { DataTypes } = Sequelize;
@@ -16,3 +16,4 @@ const Bug = db.define(
 );
 
 export default Bug;
+ */

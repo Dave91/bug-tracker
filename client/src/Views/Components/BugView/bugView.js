@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import BugModel from "../../../Services/bugs.service";
 import EditPanel from "../BugEditDelete/bugEditPanel";
 import BugEdit from "../BugCreateEdit/bugForm";
 import ViewSection from "./component/bugViewSection";
@@ -7,7 +6,7 @@ import ViewSection from "./component/bugViewSection";
 import "./bugView.css";
 
 export default (props) => {
-  const bug = new BugModel(props.bug);
+  const bug = props.bug;
   const [displayEdit, setDisplayEdit] = useState(false);
 
   function editClicked() {

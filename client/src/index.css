@@ -1,18 +1,5 @@
 #root {
-	--prim-color: steelblue;
-
-	display: grid;
-	grid-template-columns: 20% 80%;
 	margin: 0;
 	padding: 0;
 	color: white;
-}
-
-.page-cont {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	justify-content: center;
-	grid-column: 2;
-	margin-top: 2%;
 }
