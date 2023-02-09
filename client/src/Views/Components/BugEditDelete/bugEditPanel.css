@@ -1,6 +1,30 @@
 .edit-panel {
-	position: absolute;
-	margin: 10px;
+	position: relative;
+	width: max-content;
+	margin: 5px;
 	left: 0;
 	top: 0;
+}
+
+.panel-btn {
+  display: inline-block;
+	margin: 5px;
+  padding: 5px;
+	width: max-content;
+  height: max-content;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.panel-btn.delete {color: red}
+
+.panel-btn:hover {
+  background-color: beige;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

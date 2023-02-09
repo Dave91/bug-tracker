@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 //import { bugs, dataJSON } from "../../../data/data";
-import BugView from "../../Components/BugView/bugView";
+import EditPanel from "../BugEditDelete/bugEditPanel";
+import ViewSection from "../BugView/bugViewSection";
 import "./bugCard.css";
 
-export default function Card() {
+export default function Card(props) {
   const [bugClicked, setBugClicked] = useState(false);
-  const [bugClickedId, setBugClickedId] = useState("");
+  const [bugClickedData, setBugClickedData] = useState([]);
   const [bugData, setBugData] = useState([]);
+
+  const getClass = (bugClickedData, bugClicked, data) => {
+    if (bugClickedData.id === data.id && bugClicked) {
+      return "bug-card " + data.priority + " show";
+    } else if (bugClicked) {
+      return "bug-card " + data.priority + " hide";
+    } else {
+      return "bug-card " + data.priority;
+    }
+  };
+
+  const editClicked = () => {
+    //test
+  };
+
+  const deleteClicked = () => {
+    console.log("Bug deleted: " + bugClickedData.name);
+  };
 
   useEffect(() => {
     axios
@@ -17,28 +36,29 @@ export default function Card() {
 
   return (
     <div className="bug-container">
-      {bugClicked && <BugView bug={bugClickedId} />}
       {bugData.map((data) => {
         return (
           <div
-            className={
-              "bug-card " +
-              data.priority +
-              (bugClickedId === data.id && bugClicked ? " show" : "")
-            }
+            className={getClass(bugClickedData, bugClicked, data)}
             onClick={() => {
               setBugClicked(!bugClicked);
-              setBugClickedId(data.id);
+              setBugClickedData(data);
             }}
             key={data.id}
           >
-            <h2>{data.name}</h2>
-            <h4>{data.priority}</h4>
-            <h5>{data.version}</h5>
-            <h5>{data.details}</h5>
-            <h5>{data.steps}</h5>
-            <h4>{data.creator}</h4>
-            <h4>{data.assigned}</h4>
+            {bugClickedData.id === data.id && bugClicked && (
+              <EditPanel
+                bug={bugClickedData}
+                editClicked={props.editClicked}
+                deleteClicked={deleteClicked}
+              />
+            )}
+            <h2>Name: {data.name}</h2>
+            <h4>Priority: {data.priority}</h4>
+            <h4>Status: {data.status}</h4>
+            {bugClickedData.id === data.id && bugClicked && (
+              <ViewSection bug={data} />
+            )}
           </div>
         );
       })}

@@ -36,9 +36,10 @@
 }
 
 .bug-form .form-fields input,
-.bug-form .form-fields textarea {
+.bug-form .form-fields textarea,
+.bug-form .form-fields select {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -54,6 +55,7 @@
 .bug-form .form-actions .form-button {
   display: inline-block;
   padding: 10px 20px;
+  height: max-content;
   font-size: 16px;
   font-weight: bold;
   color: #fff;

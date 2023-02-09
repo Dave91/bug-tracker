@@ -20,7 +20,7 @@ export default function BugForm() {
       )} */}
       <h2>Create Bug</h2>
       <div className="form-fields">
-        <label for="name">Name:</label>
+        <label for="name">Name (required):</label>
         <input
           id="name"
           name="name"
@@ -29,7 +29,7 @@ export default function BugForm() {
           placeholder="bug name"
           onChange={inputChanged}
         ></input>
-        <label for="details">Details:</label>
+        <label for="details">Details (required):</label>
         <textarea
           id="details"
           name="details"
@@ -41,11 +41,17 @@ export default function BugForm() {
         <textarea
           id="steps"
           name="steps"
-          required
           placeholder="steps to recreate bug"
           onChange={inputChanged}
         ></textarea>
-        <label for="priority">Priority:</label>
+        <label for="version">App Version:</label>
+        <input
+          id="version"
+          name="version"
+          placeholder="app version"
+          onChange={inputChanged}
+        ></input>
+        <label for="priority">Priority (required):</label>
         <select id="priority" name="priority" required onChange={inputChanged}>
           <option value="high">high</option>
           <option value="mid">mid</option>
@@ -55,13 +61,6 @@ export default function BugForm() {
         <select id="assigned" name="assigned" onChange={inputChanged}>
           <option>admin</option>
         </select>
-        <label for="version">App Version:</label>
-        <input
-          id="version"
-          name="version"
-          placeholder="app version"
-          onChange={inputChanged}
-        ></input>
       </div>
       <div className="form-actions">
         <button type="submit" className="form-button">

@@ -10,21 +10,14 @@ export default function Home() {
     isDisplayed: false,
   });
 
-  /* useEffect(() => {
-    dispatch(getBugs());
-  }, [bugs.length < 1]); */
-
-  function Clicked(name) {
-    setDisplayBug({
-      isDisplayed: !displayBug.isDisplayed,
-      name: name,
-    });
-  }
+  const editClicked = (bug) => {
+    console.log("Bug edited: " + bug.name + " " + bug.priority);
+  };
 
   return (
     <div className="page-cont">
       <Menubar />
-      <Card />
+      <Card editClicked={editClicked} />
     </div>
   );
 }
