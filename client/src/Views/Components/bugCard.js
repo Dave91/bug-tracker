@@ -1,45 +1,36 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 //import { bugs, dataJSON } from "../../../data/data";
-import EditPanel from "../BugEditDelete/bugEditPanel";
-import ViewSection from "../BugView/bugViewSection";
 import "./bugCard.css";
 
 export default function Card(props) {
+  const bugData = props.bugData;
   const [bugClicked, setBugClicked] = useState(false);
   const [bugClickedData, setBugClickedData] = useState([]);
-  const [bugData, setBugData] = useState([]);
 
   const getClass = (bugClickedData, bugClicked, data) => {
     if (bugClickedData.id === data.id && bugClicked) {
-      return "bug-card " + data.priority + " show";
+      return data.priority + " show";
     } else if (bugClicked) {
-      return "bug-card " + data.priority + " hide";
+      return data.priority + " hide";
     } else {
-      return "bug-card " + data.priority;
+      return data.priority;
     }
   };
 
-  const editClicked = () => {
-    //test
+  const editClicked = (data) => {
+    props.editClicked(data);
   };
 
   const deleteClicked = () => {
     console.log("Bug deleted: " + bugClickedData.name);
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/bugs/all")
-      .then((res) => setBugData(res.data));
-  }, []);
-
   return (
     <div className="bug-container">
       {bugData.map((data) => {
         return (
           <div
-            className={getClass(bugClickedData, bugClicked, data)}
+            className={"bug-card " + getClass(bugClickedData, bugClicked, data)}
             onClick={() => {
               setBugClicked(!bugClicked);
               setBugClickedData(data);
@@ -47,17 +38,29 @@ export default function Card(props) {
             key={data.id}
           >
             {bugClickedData.id === data.id && bugClicked && (
-              <EditPanel
-                bug={bugClickedData}
-                editClicked={props.editClicked}
-                deleteClicked={deleteClicked}
-              />
+              <div className="edit-panel">
+                <button className="panel-btn delete" onClick={deleteClicked}>
+                  Delete
+                </button>
+                <button
+                  className="panel-btn"
+                  onClick={() => editClicked(bugClickedData)}
+                >
+                  Edit
+                </button>
+              </div>
             )}
             <h2>Name: {data.name}</h2>
             <h4>Priority: {data.priority}</h4>
             <h4>Status: {data.status}</h4>
             {bugClickedData.id === data.id && bugClicked && (
-              <ViewSection bug={data} />
+              <>
+                <h5>Version: {data.version}</h5>
+                <h5>Details: {data.details}</h5>
+                <h5>Steps: {data.steps}</h5>
+                <h4>Created by: {data.creator}</h4>
+                <h4>Assigned to: {data.assigned}</h4>
+              </>
             )}
           </div>
         );

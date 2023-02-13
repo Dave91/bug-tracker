@@ -2,16 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../Controllers/authController";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
+import { updateCurrentUser } from "firebase/auth";
 
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { loginAuth } = useAuth();
+  const [user, setUser] = useState([]);
+  const { currentUser, loginAuth } = useAuth();
   const navigate = useNavigate();
-
-  const [users, setUser] = useState([]);
 
   async function submitClicked(e) {
     e.preventDefault();
@@ -19,8 +19,10 @@ export default function Login() {
       setError("");
       setLoading(true);
       await loginAuth(emailRef.current.value, passwordRef.current.value);
+      console.log("Logged in." + currentUser);
       navigate("/home");
     } catch {
+      console.log("Login failed.");
       setError("Error: login has failed.");
     }
     setLoading(false);

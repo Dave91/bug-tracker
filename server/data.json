@@ -1,44 +1,57 @@
-[{
-	"id": "1",
-	"name": "login error",
-	"details": "blank page after login attempt",
-	"steps": "login attempt",
-	"version": "1.1",
-	"priority": "high",
-	"status": "assigned",
-	"assigned": "admin",
-	"creator": "testuser"
-},
-{
-	"id": "2",
-	"name": "bug2",
-	"details": "another bug",
-	"steps": "not given",
-	"version": "1.0",
-	"priority": "mid",
-	"status": "assigned",
-	"assigned": "admin",
-	"creator": "testuser"
-},
-{
-	"id": "3",
-	"name": "bug3",
-	"details": "yet another bug",
-	"steps": "unknown",
-	"version": "1.0",
-	"priority": "mid",
-	"status": "assigned",
-	"assigned": "admin",
-	"creator": "testuser"
-},
-{
-	"id": "4",
-	"name": "bug4",
-	"details": "more bug",
-	"steps": "none",
-	"version": "1.0",
-	"priority": "low",
-	"status": "assigned",
-	"assigned": "admin",
-	"creator": "testuser"
-}]
+[
+  {
+    "id": 1,
+    "name": "login error",
+    "details": "blank page after login attempt",
+    "steps": "login attempt",
+    "version": "1.1",
+    "priority": "high",
+    "status": "assigned",
+    "assigned": "admin",
+    "creator": "testuser"
+  },
+  {
+    "id": 2,
+    "name": "bug2",
+    "details": "another bug",
+    "steps": "not given",
+    "version": "1.0",
+    "priority": "mid",
+    "status": "assigned",
+    "assigned": "admin",
+    "creator": "testuser"
+  },
+  {
+    "id": 3,
+    "name": "bug3",
+    "details": "yet another bug",
+    "steps": "unknown",
+    "version": "1.0",
+    "priority": "mid",
+    "status": "assigned",
+    "assigned": "admin",
+    "creator": "testuser"
+  },
+  {
+    "id": 4,
+    "name": "bug4",
+    "details": "more bug",
+    "steps": "none",
+    "version": "1.0",
+    "priority": "low",
+    "status": "assigned",
+    "assigned": "admin",
+    "creator": "testuser"
+  },
+  {
+    "id": 5,
+    "name": "bug5",
+    "details": "bug5",
+    "steps": "none",
+    "version": "all",
+    "priority": "mid",
+    "status": "assigned",
+    "assigned": "admin",
+    "creator": "user"
+  }
+]

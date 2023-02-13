@@ -1,3 +1,37 @@
+/* bug cards */
+.bug-card {
+	display: inline-table;
+	opacity: 0.5;
+	box-shadow: 2px 2px 2px black;
+	text-align: center;
+	margin: 1rem;
+	padding: 0.25rem;
+	min-width: 300px;
+	max-height: 50px;
+	overflow-y: hidden;
+	transition: all 1s;
+}
+
+.bug-card:hover {
+	transform: scale(1.15);
+	opacity: 1;
+}
+
+.high {background-color: red}
+.mid {background-color: orangered}
+.low {background-color: orange}
+
+.bug-card.show {
+	position: relative;
+	top: 2rem;
+	opacity: 1;
+	max-height: 100%;
+}
+
+.bug-card.hide {display: none}
+
+/* action panel buttons*/
+
 .edit-panel {
 	position: relative;
 	width: max-content;

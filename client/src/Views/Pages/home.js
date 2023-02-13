@@ -1,23 +1,70 @@
-import React, { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Menubar from "../Components/Menubar/menubar";
-import Card from "../Components/BugCard/bugCard";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Controllers/authController";
+import Card from "../Components/bugCard";
+import BugForm from "../Components/bugForm";
 import "./home.css";
 
 export default function Home() {
-  const [displayBug, setDisplayBug] = useState({
-    name: "",
-    isDisplayed: false,
-  });
+  const [bugData, setBugData] = useState([]);
+  const [currUser, setCurrUser] = useState(useAuth.currentUser);
+  const { logoutAuth } = useAuth();
+  const navigate = useNavigate();
+  const [showBugForm, setShowBugForm] = useState(false);
+  const [editBug, setEditBug] = useState([]);
+  const [formTitle, setFormTitle] = useState("");
 
   const editClicked = (bug) => {
-    console.log("Bug edited: " + bug.name + " " + bug.priority);
+    setFormTitle("Edit Bug");
+    setShowBugForm(true);
+    setEditBug(bug);
   };
+
+  async function logoutClicked(e) {
+    try {
+      setCurrUser("");
+      await logoutAuth();
+      console.log("Logged out.");
+      navigate("/");
+    } catch {
+      console.log("Error: logout has failed.");
+    }
+  }
+
+  function closeForm() {
+    setShowBugForm(false);
+  }
+
+  function openForm() {
+    setFormTitle("Create Bug");
+    setShowBugForm(true);
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/bugs/all")
+      .then((res) => setBugData(res.data));
+  }, []);
 
   return (
     <div className="page-cont">
-      <Menubar />
-      <Card editClicked={editClicked} />
+      <div className="menubar">
+        <div className="menubar-btn" onClick={closeForm}>
+          View Bugs
+        </div>
+        <div className="menubar-btn" onClick={openForm}>
+          Create Bug
+        </div>
+        <div className="menubar-btn" onClick={logoutClicked}>
+          Logout
+        </div>
+      </div>
+      {showBugForm ? (
+        <BugForm bugData={bugData} currUser={currUser} formTitle={formTitle} />
+      ) : (
+        <Card bugData={bugData} editClicked={editClicked} />
+      )}
     </div>
   );
 }
