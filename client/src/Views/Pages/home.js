@@ -21,6 +21,14 @@ export default function Home() {
     setEditBug(bug);
   };
 
+  const deleteClicked = async (id) => {
+    try {
+      await axios.delete("http://localhost:5000/bugs/del", id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   async function logoutClicked(e) {
     try {
       setCurrUser("");
@@ -44,7 +52,12 @@ export default function Home() {
   useEffect(() => {
     axios
       .get("http://localhost:5000/bugs/all")
-      .then((res) => setBugData(res.data));
+      .then((res) => {
+        setBugData(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   return (
@@ -61,9 +74,13 @@ export default function Home() {
         </div>
       </div>
       {showBugForm ? (
-        <BugForm bugData={bugData} currUser={currUser} formTitle={formTitle} />
+        <BugForm editBug={editBug} currUser={currUser} formTitle={formTitle} />
       ) : (
-        <Card bugData={bugData} editClicked={editClicked} />
+        <Card
+          bugData={bugData}
+          editClicked={editClicked}
+          deleteClicked={deleteClicked}
+        />
       )}
     </div>
   );

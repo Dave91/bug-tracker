@@ -2,7 +2,7 @@ import express from "express";
 //import db from "./config/dbConfig.js";
 import { Sequelize } from "sequelize";
 //import router from "./routes/dbRoutes.js";
-import router from "./controller/dbController";
+import router from "./controller/dbController.js";
 import cors from "cors";
 const port = process.env.REACT_APP_PORT || 5000;
 const app = express();

@@ -4,7 +4,7 @@ import "./bugForm.css";
 
 export default function BugForm(props) {
   const currUser = props.currUser;
-  const bugData = props.bugData;
+  const editBug = props.editBug;
   const [bugObject, setBugObject] = useState("");
   const nameRef = useRef();
   const detailsRef = useRef();
@@ -15,25 +15,33 @@ export default function BugForm(props) {
 
   function inputChanged(e) {
     let newObj = {
-      id: bugData.length + 1,
-      name: nameRef.current.value,
-      details: detailsRef.current.value,
-      steps: stepsRef.current.value,
-      version: versionRef.current.value,
-      priority: priorityRef.current.value,
-      status: assignedRef.current.value ? "assigned" : "unassigned",
-      assigned: assignedRef.current.value,
-      creator: currUser,
+      bug_id: editBug ? editBug.bug_id : null,
+      bug_name: nameRef.current.value,
+      bug_details: detailsRef.current.value,
+      bug_steps: stepsRef.current.value,
+      bug_version: versionRef.current.value,
+      bug_priority: priorityRef.current.value,
+      bug_status: assignedRef.current.value ? "assigned" : "unassigned",
+      bug_assigned: 1,
+      bug_created: "user",
     };
     setBugObject(newObj);
   }
 
   async function editSubmit() {
-    await axios.post("http://localhost:5000/bugs/edit", bugObject);
+    try {
+      await axios.post("http://localhost:5000/bugs/edit", bugObject);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function createSubmit() {
-    await axios.post("http://localhost:5000/bugs/add", bugObject);
+    try {
+      await axios.post("http://localhost:5000/bugs/add", bugObject);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

@@ -8,12 +8,12 @@ export default function Card(props) {
   const [bugClickedData, setBugClickedData] = useState([]);
 
   const getClass = (bugClickedData, bugClicked, data) => {
-    if (bugClickedData.id === data.id && bugClicked) {
-      return data.priority + " show";
+    if (bugClickedData.bug_id === data.bug_id && bugClicked) {
+      return data.bug_priority + " show";
     } else if (bugClicked) {
-      return data.priority + " hide";
+      return data.bug_priority + " hide";
     } else {
-      return data.priority;
+      return data.bug_priority;
     }
   };
 
@@ -21,8 +21,8 @@ export default function Card(props) {
     props.editClicked(data);
   };
 
-  const deleteClicked = () => {
-    console.log("Bug deleted: " + bugClickedData.name);
+  const deleteClicked = (data) => {
+    props.deleteClicked(data.bug_id);
   };
 
   return (
@@ -35,9 +35,9 @@ export default function Card(props) {
               setBugClicked(!bugClicked);
               setBugClickedData(data);
             }}
-            key={data.id}
+            key={data.bug_id}
           >
-            {bugClickedData.id === data.id && bugClicked && (
+            {bugClickedData.bug_id === data.bug_id && bugClicked && (
               <div className="edit-panel">
                 <button className="panel-btn delete" onClick={deleteClicked}>
                   Delete
@@ -50,16 +50,16 @@ export default function Card(props) {
                 </button>
               </div>
             )}
-            <h2>Name: {data.name}</h2>
-            <h4>Priority: {data.priority}</h4>
-            <h4>Status: {data.status}</h4>
-            {bugClickedData.id === data.id && bugClicked && (
+            <h2>Name: {data.bug_name}</h2>
+            <h4>Priority: {data.bug_priority}</h4>
+            <h4>Status: {data.bug_status}</h4>
+            {bugClickedData.bug_id === data.bug_id && bugClicked && (
               <>
-                <h5>Version: {data.version}</h5>
-                <h5>Details: {data.details}</h5>
-                <h5>Steps: {data.steps}</h5>
-                <h4>Created by: {data.creator}</h4>
-                <h4>Assigned to: {data.assigned}</h4>
+                <h5>Version: {data.bug_version}</h5>
+                <h5>Details: {data.bug_details}</h5>
+                <h5>Steps: {data.bug_steps}</h5>
+                <h4>Created by: {data.bug_created}</h4>
+                <h4>Assigned to: {data.bug_assigned}</h4>
               </>
             )}
           </div>
