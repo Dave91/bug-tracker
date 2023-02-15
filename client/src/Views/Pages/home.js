@@ -21,12 +21,19 @@ export default function Home() {
     setEditBug(bug);
   };
 
-  const deleteClicked = async (id) => {
+  const deleteClicked = async (bugId) => {
     try {
-      await axios.delete("http://localhost:5000/bugs/del", id);
+      await axios.post("http://localhost:5000/bugs/del", { bugId });
+      updPage();
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const updPage = () => {
+    axios.get("http://localhost:5000/bugs/all").then((res) => {
+      setBugData(res.data);
+    });
   };
 
   async function logoutClicked(e) {
@@ -74,7 +81,12 @@ export default function Home() {
         </div>
       </div>
       {showBugForm ? (
-        <BugForm editBug={editBug} currUser={currUser} formTitle={formTitle} />
+        <BugForm
+          editBug={editBug}
+          updPage={updPage}
+          currUser={currUser}
+          formTitle={formTitle}
+        />
       ) : (
         <Card
           bugData={bugData}

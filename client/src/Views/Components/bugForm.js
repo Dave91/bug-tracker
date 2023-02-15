@@ -15,7 +15,7 @@ export default function BugForm(props) {
 
   function inputChanged(e) {
     let newObj = {
-      bug_id: editBug ? editBug.bug_id : null,
+      bug_id: editBug ? editBug.bug_id : undefined,
       bug_name: nameRef.current.value,
       bug_details: detailsRef.current.value,
       bug_steps: stepsRef.current.value,
@@ -39,6 +39,7 @@ export default function BugForm(props) {
   async function createSubmit() {
     try {
       await axios.post("http://localhost:5000/bugs/add", bugObject);
+      props.updPage();
     } catch (error) {
       console.log(error);
     }
