@@ -13,6 +13,7 @@
 
 # misc
 /config
+fbconfig.js
 .DS_Store
 .env
 .env.local
