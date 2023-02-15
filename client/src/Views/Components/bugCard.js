@@ -17,12 +17,12 @@ export default function Card(props) {
     }
   };
 
-  const editClicked = (data) => {
-    props.editClicked(data);
+  const editClicked = (bug) => {
+    props.editClicked(bug);
   };
 
-  const deleteClicked = (data) => {
-    props.deleteClicked(data.bug_id);
+  const deleteClicked = (id) => {
+    props.deleteClicked(id);
   };
 
   return (
@@ -39,7 +39,10 @@ export default function Card(props) {
           >
             {bugClickedData.bug_id === data.bug_id && bugClicked && (
               <div className="edit-panel">
-                <button className="panel-btn delete" onClick={deleteClicked}>
+                <button
+                  className="panel-btn delete"
+                  onClick={() => deleteClicked(bugClickedData.bug_id)}
+                >
                   Delete
                 </button>
                 <button

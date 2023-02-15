@@ -1,6 +1,5 @@
 import express from "express";
 import mysql2 from "mysql2";
-import fs from "fs/promises";
 
 const router = express.Router();
 
@@ -10,6 +9,11 @@ const conn = mysql2.createConnection({
   user: "root",
   password: "root8891",
   database: "bugtracker",
+  /* host: process.env.REACT_APP_DB_HOST,
+  port: process.env.REACT_APP_DB_PORT,
+  user: process.env.REACT_APP_DB_USER,
+  password: process.env.REACT_APP_DB_PASSWORD,
+  database: process.env.REACT_APP_DB_DATABASE, */
 });
 
 router.get("/all", async (req, res) => {
@@ -25,7 +29,7 @@ router.get("/all", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   try {
-    let data = req.body;
+    let data = req.dbody;
     await conn
       .promise()
       .query(
@@ -51,10 +55,9 @@ router.post("/add", async (req, res) => {
 
 router.delete("/del", async (req, res) => {
   try {
-    let data = req.body; //.split(".")[0];
-    await conn
-      .promise()
-      .query("DELETE FROM bt_bugs WHERE bug_id = '?'", [data]);
+    let data = req.dbody; //.split(".")[0];
+    console.log(data);
+    await conn.promise().query("DELETE FROM bt_bugs WHERE bug_id = ?", [data]);
     console.log("Bug removed.");
     res.status(200).send("Bug removed.");
   } catch (error) {
@@ -65,7 +68,7 @@ router.delete("/del", async (req, res) => {
 
 router.put("/edit", async (req, res) => {
   try {
-    let data = req.body;
+    let data = req.dbody;
     await conn
       .promise()
       .query(
