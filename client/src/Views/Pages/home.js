@@ -80,20 +80,22 @@ export default function Home() {
           Logout
         </div>
       </div>
-      {showBugForm ? (
-        <BugForm
-          editBug={editBug}
-          updPage={updPage}
-          currUser={currUser}
-          formTitle={formTitle}
-        />
-      ) : (
-        <Card
-          bugData={bugData}
-          editClicked={editClicked}
-          deleteClicked={deleteClicked}
-        />
-      )}
+      <div className="content">
+        {showBugForm ? (
+          <BugForm
+            editBug={editBug}
+            updPage={updPage}
+            currUser={currUser}
+            formTitle={formTitle}
+          />
+        ) : (
+          <Card
+            bugData={bugData}
+            editClicked={editClicked}
+            deleteClicked={deleteClicked}
+          />
+        )}
+      </div>
     </div>
   );
 }

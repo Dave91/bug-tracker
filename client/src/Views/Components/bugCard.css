@@ -1,19 +1,19 @@
 /* bug cards */
 .bug-card {
 	display: inline-table;
-	opacity: 0.5;
+	opacity: 0.7;
 	box-shadow: 2px 2px 2px black;
 	text-align: center;
+	line-height: 1.5rem;
 	margin: 1rem;
-	padding: 0.25rem;
+	padding: 1rem;
 	min-width: 300px;
-	max-height: 50px;
-	overflow-y: hidden;
+	cursor: pointer;
 	transition: all 1s;
 }
 
 .bug-card:hover {
-	transform: scale(1.15);
+	transform: scale(1.1);
 	opacity: 1;
 }
 
@@ -23,15 +23,14 @@
 
 .bug-card.show {
 	position: relative;
-	top: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
 	opacity: 1;
-	max-height: 100%;
 }
 
 .bug-card.hide {display: none}
 
-/* action panel buttons*/
-
+/* action panel buttons */
 .edit-panel {
 	position: relative;
 	width: max-content;
@@ -48,17 +47,13 @@
   height: max-content;
   font-size: 16px;
   font-weight: bold;
+	color: black;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .panel-btn.delete {color: red}
-
-.panel-btn:hover {
-  background-color: beige;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+.panel-btn:hover {transform: translateY(-2px)}
