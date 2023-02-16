@@ -21,6 +21,7 @@ export default function Home() {
     setEditBug(bug);
   };
 
+  //DELETE BUG
   const deleteClicked = async (bugId) => {
     try {
       await axios.post("http://localhost:5000/bugs/del", { bugId });
@@ -30,10 +31,16 @@ export default function Home() {
     }
   };
 
+  //GET ALL BUGS
   const updPage = () => {
-    axios.get("http://localhost:5000/bugs/all").then((res) => {
-      setBugData(res.data);
-    });
+    axios
+      .get("http://localhost:5000/bugs/all")
+      .then((res) => {
+        setBugData(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   async function logoutClicked(e) {
@@ -57,14 +64,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/bugs/all")
-      .then((res) => {
-        setBugData(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    updPage();
   }, []);
 
   return (
@@ -86,7 +86,6 @@ export default function Home() {
           updPage={updPage}
           currUser={currUser}
           formTitle={formTitle}
-          showBugForm={showBugForm}
         />
       ) : (
         <Card

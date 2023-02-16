@@ -41,6 +41,7 @@ export default function BugForm(props) {
     setBugObject(newObj);
   }
 
+  //EDIT BUG
   async function editSubmit() {
     try {
       await axios.post("http://localhost:5000/bugs/edit", bugObject);
@@ -50,6 +51,7 @@ export default function BugForm(props) {
     }
   }
 
+  //CREATE BUG
   async function createSubmit() {
     try {
       await axios.post("http://localhost:5000/bugs/add", bugObject);
