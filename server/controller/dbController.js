@@ -55,15 +55,14 @@ router.post("/del", async (req, res) => {
   }
 });
 
-router.put("/edit", async (req, res) => {
+router.post("/edit", async (req, res) => {
   try {
     let data = req.body;
     await conn
       .promise()
       .query(
-        "INSERT INTO bt_bugs (bug_name, bug_details, bug_steps, bug_version, bug_priority, bug_assigned, bug_created, bug_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        "UPDATE bt_bugs SET bug_name = ?, bug_details = ?, bug_steps = ?, bug_version = ?, bug_priority = ?, bug_assigned = ?, bug_created = ?, bug_status = ? WHERE bug_id = ?",
         [
-          data.bug_id,
           data.bug_name,
           data.bug_details,
           data.bug_steps,
@@ -72,13 +71,14 @@ router.put("/edit", async (req, res) => {
           data.bug_assigned,
           data.bug_created,
           data.bug_status,
+          data.bug_id,
         ]
       );
-    console.log("Bug created.");
-    res.status(200).send("Bug created.");
+    console.log("Bug updated.");
+    res.status(200).send("Bug updated.");
   } catch (error) {
     console.log("edit error: " + error);
-    res.status(500).send("Error while writing data!");
+    res.status(500).send("Error while updating data!");
   }
 });
 

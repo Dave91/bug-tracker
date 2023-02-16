@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./bugForm.css";
 
 export default function BugForm(props) {
   const currUser = props.currUser;
   const editBug = props.editBug;
+  const [initNeeded, setInitNeeded] = useState(true);
   const [bugObject, setBugObject] = useState("");
   const nameRef = useRef();
   const detailsRef = useRef();
@@ -13,9 +14,21 @@ export default function BugForm(props) {
   const priorityRef = useRef();
   const assignedRef = useRef();
 
+  useEffect(() => {
+    if (props.formTitle === "Edit Bug" && editBug && initNeeded) {
+      nameRef.current.value = editBug.bug_name;
+      detailsRef.current.value = editBug.bug_details;
+      stepsRef.current.value = editBug.bug_steps;
+      versionRef.current.value = editBug.bug_version;
+      priorityRef.current.value = editBug.bug_priority;
+      assignedRef.current.value = editBug.bug_assigned;
+      setInitNeeded(false);
+    }
+  }, []);
+
   function inputChanged(e) {
     let newObj = {
-      bug_id: editBug ? editBug.bug_id : undefined,
+      bug_id: editBug.bug_id || undefined,
       bug_name: nameRef.current.value,
       bug_details: detailsRef.current.value,
       bug_steps: stepsRef.current.value,
@@ -31,6 +44,7 @@ export default function BugForm(props) {
   async function editSubmit() {
     try {
       await axios.post("http://localhost:5000/bugs/edit", bugObject);
+      props.updPage();
     } catch (error) {
       console.log(error);
     }
@@ -87,9 +101,9 @@ export default function BugForm(props) {
           ref={priorityRef}
           onChange={inputChanged}
         >
-          <option value="high">high</option>
-          <option value="mid">mid</option>
-          <option value="low">low</option>
+          <option>high</option>
+          <option>mid</option>
+          <option>low</option>
         </select>
         <label>Assigned to:</label>
         <select id="assigned" ref={assignedRef} onChange={inputChanged}>

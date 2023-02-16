@@ -86,6 +86,7 @@ export default function Home() {
           updPage={updPage}
           currUser={currUser}
           formTitle={formTitle}
+          showBugForm={showBugForm}
         />
       ) : (
         <Card
