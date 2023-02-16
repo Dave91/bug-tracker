@@ -41,6 +41,7 @@
   width: 100%;
   padding: 5px;
   font-size: 16px;
+  color: black;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
@@ -68,12 +69,14 @@
 
 .bug-form .form-actions .form-button:hover {
   background-color: #0066b2;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
 }
 
 .bug-form .form-actions .form-button:active {
   background-color: #0055a3;
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
 }

@@ -54,11 +54,12 @@ export default function Home() {
     }
   }
 
-  function closeForm() {
+  function viewClicked() {
     setShowBugForm(false);
+    updPage();
   }
 
-  function openForm() {
+  function createClicked() {
     setFormTitle("Create Bug");
     setShowBugForm(true);
   }
@@ -70,10 +71,10 @@ export default function Home() {
   return (
     <div className="page-cont">
       <div className="menubar">
-        <div className="menubar-btn" onClick={closeForm}>
+        <div className="menubar-btn" onClick={viewClicked}>
           View Bugs
         </div>
-        <div className="menubar-btn" onClick={openForm}>
+        <div className="menubar-btn" onClick={createClicked}>
           Create Bug
         </div>
         <div className="menubar-btn" onClick={logoutClicked}>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import { bugs, dataJSON } from "../../../data/data";
 import "./bugCard.css";
 
 export default function Card(props) {
