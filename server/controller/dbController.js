@@ -1,14 +1,14 @@
 import express from "express";
 import mysql2 from "mysql2";
 import db from "../config/dbConfig.js";
-const router = express.Router();
 
+const router = express.Router();
 const conn = mysql2.createConnection(db);
 
 router.get("/all", async (req, res) => {
   try {
     const [results] = await conn.promise().query("SELECT * FROM bt_bugs");
-    console.log("Bugs loaded.");
+    console.log("Bugs loaded: " + results.length + "db");
     res.status(200).send(results);
   } catch (error) {
     console.error("get error: " + error);
@@ -45,9 +45,8 @@ router.post("/add", async (req, res) => {
 router.post("/del", async (req, res) => {
   try {
     let data = req.body.bugId;
-    console.log(data);
     await conn.promise().query("DELETE FROM bt_bugs WHERE bug_id = ?", [data]);
-    console.log("Bug removed.");
+    console.log("Bug removed: id" + data);
     res.status(200).send("Bug removed.");
   } catch (error) {
     console.log("del error: " + error);
@@ -74,7 +73,7 @@ router.post("/edit", async (req, res) => {
           data.bug_id,
         ]
       );
-    console.log("Bug updated.");
+    console.log("Bug updated: id" + data.bug_id);
     res.status(200).send("Bug updated.");
   } catch (error) {
     console.log("edit error: " + error);
