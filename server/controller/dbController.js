@@ -8,7 +8,7 @@ const conn = mysql2.createConnection(db);
 router.get("/all", async (req, res) => {
   try {
     const [results] = await conn.promise().query("SELECT * FROM bt_bugs");
-    console.log("Bugs loaded: " + results.length + "db");
+    console.log(results.length + " bugs loaded.");
     res.status(200).send(results);
   } catch (error) {
     console.error("get error: " + error);
