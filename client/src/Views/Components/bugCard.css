@@ -1,53 +1,39 @@
-/* bug cards */
-.bug-card {
-	display: inline-table;
-	opacity: 0.7;
-	box-shadow: 2px 2px 2px black;
-	text-align: center;
-	line-height: 1.5rem;
-	margin: 1rem;
-	padding: 1rem;
-	min-width: 300px;
-	cursor: pointer;
-	transition: all 1s;
+.bug-cont {
+  margin: 0;
 }
 
-.bug-card:hover {
-	transform: scale(1.1);
-	opacity: 1;
+/* filter panel */
+.filter-panel {
+  display: block;
+  margin-left: 1rem;
 }
 
-.high {background-color: red}
-.mid {background-color: orangered}
-.low {background-color: orange}
-
-.bug-card.show {
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	opacity: 1;
+.filter-panel .toggle,
+.filters {
+  display: inline;
+  transition: all 0.5s;
 }
 
-.bug-card.hide {display: none}
-
-/* action panel buttons */
-.edit-panel {
-	position: relative;
-	width: max-content;
-	margin: 5px;
-	left: 0;
-	top: 0;
+.toggle {
+  content: url("/src/images/icons8-off.png");
 }
 
-.panel-btn {
-  display: inline-block;
-	margin: 5px;
-  padding: 5px;
-	width: max-content;
+.toggle.on {
+  content: url("/src/images/icons8-on.png");
+}
+
+.filter-panel:hover .filt-btn {
+  margin-left: 5px;
+}
+
+.filt-btn {
+  position: inherit;
+  display: inline;
+  width: max-content;
   height: max-content;
   font-size: 16px;
-  font-weight: bold;
-	color: black;
+  font-weight: normal;
+  color: black;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -55,5 +41,74 @@
   cursor: pointer;
 }
 
-.panel-btn.delete {color: red}
-.panel-btn:hover {transform: translateY(-3px)}
+.filt-btn:hover {
+  font-weight: bold;
+}
+
+.filt-btn.on {
+  background-color: burlywood;
+}
+
+/* bug cards */
+.bug-card {
+  display: inline-table;
+  opacity: 0.7;
+  box-shadow: 2px 2px 2px black;
+  text-align: center;
+  line-height: 1.5rem;
+  margin: 1rem;
+  padding: 1rem;
+  min-width: 300px;
+  transition: all 1s;
+}
+
+.bug-card:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.high {
+  background-color: red;
+}
+.mid {
+  background-color: orangered;
+}
+.low {
+  background-color: orange;
+}
+
+.bug-card.hide {
+  display: none;
+}
+
+/* action panel buttons */
+.edit-panel {
+  position: relative;
+  width: max-content;
+  margin: 5px;
+  left: 0;
+  top: 0;
+}
+
+.panel-btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  width: max-content;
+  height: max-content;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.panel-btn.delete {
+  color: red;
+}
+.panel-btn:hover {
+  transform: translateY(-3px);
+}
