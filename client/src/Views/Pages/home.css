@@ -1,7 +1,7 @@
 .page-cont {
-	display: inline;
-	justify-content: center;
-	margin: 0;
+  display: block;
+  justify-content: center;
+  margin: 0;
   padding: 0;
 }
 
@@ -10,7 +10,11 @@
   padding: 15px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255, 255, 25, 0.25), rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 25, 0.25),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .menubar-btn {
@@ -38,15 +42,16 @@
 /* Contents */
 .content {
   position: relative;
-	margin: 0;
+  margin: 0;
   padding: 0;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 90vh;
-	background: url("../../images/pencil-sketch-texture-by-vector_corp-on-freepik_com.jpg");
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+  background: url("../../images/pencil-sketch-texture-by-vector_corp-on-freepik_com.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
 }
