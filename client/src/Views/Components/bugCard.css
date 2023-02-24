@@ -8,22 +8,15 @@
   margin-left: 1rem;
 }
 
-.filter-panel .toggle,
 .filters {
   display: inline;
   transition: all 0.5s;
 }
 
-.toggle {
-  content: url("/src/images/icons8-off.png");
-}
-
-.toggle.on {
-  content: url("/src/images/icons8-on.png");
-}
-
-.filter-panel:hover .filt-btn {
-  margin-left: 5px;
+.filters::before {
+  content: "Filters:";
+  color: black;
+  background-color: white;
 }
 
 .filt-btn {
@@ -31,6 +24,7 @@
   display: inline;
   width: max-content;
   height: max-content;
+  margin-left: 1rem;
   font-size: 16px;
   font-weight: normal;
   color: black;
@@ -42,11 +36,12 @@
 }
 
 .filt-btn:hover {
-  font-weight: bold;
+  background-color: bisque;
 }
 
 .filt-btn.on {
   background-color: burlywood;
+  font-weight: bold;
 }
 
 /* bug cards */
@@ -58,7 +53,7 @@
   line-height: 1.5rem;
   margin: 1rem;
   padding: 1rem;
-  min-width: 300px;
+  width: 350px;
   transition: all 1s;
 }
 

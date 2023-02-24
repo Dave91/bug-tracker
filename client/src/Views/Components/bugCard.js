@@ -25,11 +25,7 @@ export default function Card(props) {
     props.editClicked(bug);
   };
 
-  const toggleClicked = () => {
-    setShowDetails(!showDetails);
-    setBugClicked(false);
-    setBugClickedData([]);
-  };
+  const toggleClicked = () => {};
 
   const cardActive = (data) => {
     setBugClicked(!bugClicked);
@@ -39,34 +35,26 @@ export default function Card(props) {
   return (
     <div className="bug-cont">
       <div className="filter-panel">
-        <img
-          className={"toggle " + (showDetails ? " on" : "")}
-          onClick={toggleClicked}
-          alt="toggle"
-        ></img>
-        {showDetails && (
-          <div className="filters">
-            <button
-              className={"filt-btn" + (!filtHigh ? " on" : "")}
-              onClick={() => setFiltHigh(!filtHigh)}
-            >
-              high
-            </button>
-            <button
-              className={"filt-btn" + (!filtMid ? " on" : "")}
-              onClick={() => setFiltMid(!filtMid)}
-            >
-              mid
-            </button>
-            <button
-              className={"filt-btn" + (!filtLow ? " on" : "")}
-              onClick={() => setFiltLow(!filtLow)}
-            >
-              low
-            </button>
-            {/* <input type="checkbox"></input> */}
-          </div>
-        )}
+        <div className="filters">
+          <button
+            className={"filt-btn" + (!filtHigh ? " on" : "")}
+            onClick={() => setFiltHigh(!filtHigh)}
+          >
+            high
+          </button>
+          <button
+            className={"filt-btn" + (!filtMid ? " on" : "")}
+            onClick={() => setFiltMid(!filtMid)}
+          >
+            mid
+          </button>
+          <button
+            className={"filt-btn" + (!filtLow ? " on" : "")}
+            onClick={() => setFiltLow(!filtLow)}
+          >
+            low
+          </button>
+        </div>
       </div>
       {bugData.map((data) => {
         return (
@@ -75,7 +63,7 @@ export default function Card(props) {
               "bug-card " + data.bug_priority + getClass(data.bug_priority)
             }
             onClick={() => cardActive(data)}
-            onMouseEnter={() => cardActive(data)}
+            //onMouseEnter={() => cardActive(data)}
             onMouseLeave={() => setBugClicked(false)}
             key={data.bug_id}
           >
