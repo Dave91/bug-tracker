@@ -6,26 +6,20 @@ export default function Card(props) {
   const [bugClicked, setBugClicked] = useState(false);
   const [bugClickedData, setBugClickedData] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
-  const [filtHigh, setFiltHigh] = useState(false);
-  const [filtMid, setFiltMid] = useState(false);
-  const [filtLow, setFiltLow] = useState(false);
+  const priors = ["high", "mid", "low"];
+  const [filts, setFilts] = useState(priors);
 
-  const getClass = (prior) => {
-    if (
-      (prior === "high" && filtHigh) ||
-      (prior === "mid" && filtMid) ||
-      (prior === "low" && filtLow)
-    ) {
-      return " hide";
+  const filterClicked = (prior) => {
+    if (filts.includes(prior)) {
+      setFilts(filts.filter((f) => f !== prior));
+    } else {
+      setFilts([...filts, prior]);
     }
-    return "";
   };
 
   const editClicked = (bug) => {
     props.editClicked(bug);
   };
-
-  const toggleClicked = () => {};
 
   const cardActive = (data) => {
     setBugClicked(!bugClicked);
@@ -36,31 +30,24 @@ export default function Card(props) {
     <div className="bug-cont">
       <div className="filter-panel">
         <div className="filters">
-          <button
-            className={"filt-btn" + (!filtHigh ? " on" : "")}
-            onClick={() => setFiltHigh(!filtHigh)}
-          >
-            high
-          </button>
-          <button
-            className={"filt-btn" + (!filtMid ? " on" : "")}
-            onClick={() => setFiltMid(!filtMid)}
-          >
-            mid
-          </button>
-          <button
-            className={"filt-btn" + (!filtLow ? " on" : "")}
-            onClick={() => setFiltLow(!filtLow)}
-          >
-            low
-          </button>
+          {priors.map((prior) => (
+            <button
+              className={"filt-btn" + (filts.includes(prior) ? " on" : "")}
+              onClick={() => filterClicked(prior)}
+              key={prior}
+            >
+              {prior}
+            </button>
+          ))}
         </div>
       </div>
       {bugData.map((data) => {
         return (
           <div
             className={
-              "bug-card " + data.bug_priority + getClass(data.bug_priority)
+              "bug-card " +
+              data.bug_priority +
+              (filts.includes(data.bug_priority) ? "" : " hide")
             }
             onClick={() => cardActive(data)}
             //onMouseEnter={() => cardActive(data)}
